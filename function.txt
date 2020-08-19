@@ -1,0 +1,7 @@
+# Handy shell commands/functions
+
+# Delete pods in a namespace by checking status of a pod
+for i in `kubectl get pods -n=airflow | grep Completed | awk '{print $1}'`; do kubectl delete pod $i -n=airflow ; done
+
+# Delete docker containers by getting container ids
+for i in `docker ps -a|awk '{print $1}'|grep -v "CONTAINER"`; do docker rm -f $i; done
